@@ -52,10 +52,11 @@ end
 function M.run_post_update()
   Log:debug "Starting post-update hook"
 
-  if vim.fn.has "nvim-0.7" ~= 1 then
-    local compat_tag = "1.1.3"
+  local compat_tag = "1.1.3"
+  local req_version = "0.9"
+  if vim.fn.has("nvim-" .. req_version) ~= 1 then
     vim.notify(
-      "Please upgrade your Neovim base installation. Newer version of Lunarvim requires v0.7+",
+      "Please upgrade your Neovim base installation. Newer version of Lunarvim requires v" .. req_version,
       vim.log.levels.WARN
     )
     vim.wait(1000, function()
